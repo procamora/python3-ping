@@ -1,12 +1,15 @@
-# read the contents of your README file
+#!/usr/bin/env python3
+# -*- coding: utf-8 -*-
+
 from pathlib import Path
 
 from setuptools import setup
 
+# read the contents of your README file
 this_directory = Path(__file__).parent.resolve()
 long_description = Path(this_directory, 'README.md').read_text()
 
-version = '0.1'
+version = '1.0'
 
 setup(
     name='procamora-ping',  # How you named your package folder (MyLib)
@@ -23,9 +26,10 @@ setup(
     keywords=['icmp', 'ping'],  # Keywords that define your package best
     install_requires=[  # I get to this in a second
         'colorlog',
+        'procamora_logging'
     ],
     classifiers=[  # https://pypi.org/classifiers/
-        'Development Status :: 3 - Alpha',
+        'Development Status :: 4 - Beta',
         # Chose either "3 - Alpha", "4 - Beta" or "5 - Production/Stable" as the current state of your package
         'Intended Audience :: Developers',  # Define that your audience are developers
         'Topic :: Software Development :: Libraries',

@@ -1,13 +1,14 @@
 #!/usr/bin/env python3
 # -*- coding: utf-8 -*-
 
+import logging
 import platform
 import subprocess
-from typing import NoReturn, Text, Tuple, Optional, List
+from typing import NoReturn, Text, List
 
-from procamora_ping.logger import get_logger, logging
+from procamora_logging.logger import get_logging
 
-logger: logging = get_logger(False, 'ping')
+logger: logging = get_logging(False, 'ping')
 
 
 def ping(hostname: Text) -> bool:
@@ -39,7 +40,7 @@ def ping(hostname: Text) -> bool:
 
 
 def main() -> NoReturn:
-    ips: List[Text] = ["192.168.1.1", "192.168.1.11", "192.168.1.56"]
+    ips: List[Text] = ["192.168.1.1", "192.168.1.11", "192.168.1.0"]
 
     for ip in ips:
         texto: bool = ping(ip)

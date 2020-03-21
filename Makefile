@@ -1,10 +1,16 @@
 #!/usr/bin/env make
+# -*- coding: utf-8 -*-
 
-OUTPUTEGG=procamora_sqlite3.egg-info/
-OUTPUTDIST=dist/
+OUTPUT_EGG=procamora_ping.egg-info/
+OUTPUT_DIST=dist/
+OUTPUT_MANIFEST=MANIFEST
 
 
 # python3 -m pip install --user --upgrade setuptools wheel twine
+
+
+all: clean dist git upload
+
 
 dist:
 	python3 setup.py sdist
@@ -12,13 +18,19 @@ dist:
 
 #https://twine.readthedocs.io/en/latest/
 upload:
-	twine upload dist/* -u procamora --verbose 
+	twine upload dist/* -u procamora --verbose
+
+
+git:
+	git add .
+	git commit -m "update from Makefile"
+	git push
 
 
 clean:
-	[ ! -d $(OUTPUTEGG) ] || rm -rf $(OUTPUTEGG) 
-	[ ! -d $(OUTPUTDIST) ] || rm -rf $(OUTPUTDIST) 
+	[ ! -d $(OUTPUT_EGG) ] || rm -rf $(OUTPUT_EGG)
+	[ ! -d $(OUTPUT_DIST) ] || rm -rf $(OUTPUT_DIST)
+	[ ! -f $(OUTPUT_MANIFEST) ] || rm -f $(OUTPUT_MANIFEST)
 
 
-
-.PHONY: dist clean
+.PHONY: dist clean git upload all
